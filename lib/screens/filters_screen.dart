@@ -45,13 +45,13 @@ class _FiltersScreenState extends State<FiltersScreen> {
           IconButton(
               icon: Icon(Icons.save),
               onPressed: () {
-                final SelectedFilters = {
+                final selectedFilters = {
                   'gluten': _glutenFree,
                   'lactose': _lactoseFree,
                   'vegetarian': _vegeterian,
                   'vegan': _vegan
                 };
-                widget.saveFilters(SelectedFilters);
+                widget.saveFilters(selectedFilters);
               })
         ],
       ),
@@ -78,17 +78,23 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     'Lactose-free',
                     'Only include Lactose-free meals!',
                     _lactoseFree, (newValue) {
-                  _lactoseFree = newValue;
+                  setState(() {
+                    _lactoseFree = newValue;
+                  });
                 }),
                 _buildSwitchListTile(
                     'Vegetarian', 'Only include vegetarian meals!', _vegeterian,
                     (newValue) {
-                  _vegeterian = newValue;
+                  setState(() {
+                    _vegeterian = newValue;
+                  });
                 }),
                 _buildSwitchListTile(
                     'Vegan', 'Only include Vegan meals!', _vegan, (newValue) {
-                  _vegan = newValue;
-                })
+                  setState(() {
+                    _vegan = newValue;
+                  });
+                }),
               ],
             ),
           ),
